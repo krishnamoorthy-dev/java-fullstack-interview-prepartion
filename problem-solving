@@ -1,31 +1,93 @@
-##Arrays
+📌 1. Arrays
+🔹 Merge Two Sorted Arrays
 
-1)Merge two sorted array
+Problem:
+Merge two sorted arrays into one sorted array in-place.
+
+Approach:
+
+Start filling from the end of nums1
+Compare elements from both arrays
+Place the larger element at the current position
+
+Time Complexity: O(m + n)
+Space Complexity: O(1)
+
 public void merge(int[] nums1, int m, int[] nums2, int n) {
-        int i=m-1;
-        int j=n-1;
-        int k=(m+n) -1;
+    int i = m - 1;
+    int j = n - 1;
+    int k = (m + n) - 1;
 
-        while(j >= 0) {
-            if(i >= 0 && nums1[i] > nums2[j]) {
-                nums1[k--] = nums1[i--];
-            } else {
-                nums1[k--] = nums2[j--];
-            }
+    while (j >= 0) {
+        if (i >= 0 && nums1[i] > nums2[j]) {
+            nums1[k--] = nums1[i--];
+        } else {
+            nums1[k--] = nums2[j--];
         }
     }
+}
+📌 2. LinkedHashMap & Streams
+🔹 First Non-Repeating Character
 
-##LinkedHashMap
-Find first non-repetive character
+Problem:
+Find the first non-repeating character in a string.
+
+Approach:
+
+Convert string to stream of characters
+Use LinkedHashMap to maintain insertion order
+Count frequency using Collectors.groupingBy
+Filter characters with frequency = 1
+
+Time Complexity: O(n)
+Space Complexity: O(n)
+
 public static void main(String[] args) {
-        String input = "coconut";
-        
-        //Streams
-        Character result = input.chars().mapToObj(a -> (char) a)
-        .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()))
-        .entrySet().stream().filter(a -> a.getValue() == 1)
-        .map(a -> a.getKey())
-        .findFirst().get();
-        System.out.println(result);
-    }
+    String input = "coconut";
 
+    Character result = input.chars()
+        .mapToObj(a -> (char) a)
+        .collect(Collectors.groupingBy(
+            Function.identity(),
+            LinkedHashMap::new,
+            Collectors.counting()))
+        .entrySet().stream()
+        .filter(a -> a.getValue() == 1)
+        .map(a -> a.getKey())
+        .findFirst()
+        .get();
+
+    System.out.println(result);
+}
+📌 3. Stack
+🔹 Next Greater Element
+
+Problem:
+For each element, find the next greater element on the right side.
+
+Approach:
+
+Traverse array from right to left
+Use stack to keep track of greater elements
+Pop smaller elements from stack
+The top of stack is the next greater element
+
+Time Complexity: O(n)
+Space Complexity: O(n)
+
+public static void main(String[] args) {
+    int a[] = {4, 5, 2, 25};
+    var container = new Stack<Integer>();
+
+    for (int i = a.length - 1; i >= 0; i--) {
+        while (!container.isEmpty() && container.peek() <= a[i]) {
+            container.pop();
+        }
+
+        if (!container.isEmpty()) {
+            System.out.println(container.peek());
+        }
+
+        container.push(a[i]);
+    }
+}
