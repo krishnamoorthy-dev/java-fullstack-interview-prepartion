@@ -56,6 +56,15 @@ Output: 11234456678
 ```
 Output: a=>[apple, avocado]b=>[banna]g=>[grapes]m=>[mango]o=>[orange]
 
+### 3. Find the longest string in a array of strings
+
+```java
+        String fruites[] = {"orange", "apple","banna","grapes","mango","avocado"};
+        String maxLenStr = Arrays.stream(fruites).max(Comparator.comparingInt(String::length)).orElse("");
+        System.out.print(maxLenStr);
+```
+Output: avocado
+
 ---
 
 ## 🗂️ LinkedHashMap
