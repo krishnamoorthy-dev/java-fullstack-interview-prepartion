@@ -4,43 +4,63 @@ A collection of common Data Structures and Algorithm problems solved in Java.
 
 ---
 
+## 🛠️ Prerequisites
+
+- Java 8+
+- Basic understanding of Arrays, LinkedHashMap, and Stack
+
+---
+
+## 📁 Topics Covered
+
+| Topic         | Problem                          |
+|---------------|----------------------------------|
+| Arrays        | Merge Two Sorted Arrays          |
+| LinkedHashMap | First Non-Repetitive Character   |
+| Stack         | Next Greater Element             |
+
+
 ## 📦 Arrays
 
 ### 1. Merge Two Sorted Arrays
 
-Merges two sorted arrays `nums1` and `nums2` in-place into `nums1` using a **two-pointer approach from the end**.
+```java
+// Merge two sorted array in nature order
+        int a[] = {1,3,4,5,6,8};
+        int b[] = {1,2,4,6,7};
+        
+        int i = 0;
+        int j = 0;
+        int k = 0;
+        int result[] = new int[a.length+b.length];
+        
+        while(k < (a.length+b.length)) {
+            if(i < a.length && j < b.length && a[i] > b[j]) {
+                result[k] = b[j++];
+            } else if(i < a.length) {
+                result[k] = a[i++];
+            } else if(j < b.length) {
+                result[k] = b[j++];
+            }
+            System.out.print(result[k]);
+            k++;
+        }
+```
+Output: 11234456678
 
-**Time Complexity:** `O(m + n)` | **Space Complexity:** `O(1)`
+### 2. Group by string first letter
 
 ```java
-public void merge(int[] nums1, int m, int[] nums2, int n) {
-    int i = m - 1;
-    int j = n - 1;
-    int k = (m + n) - 1;
-    while (j >= 0) {
-        if (i >= 0 && nums1[i] > nums2[j]) {
-            nums1[k--] = nums1[i--];
-        } else {
-            nums1[k--] = nums2[j--];
-        }
-    }
-}
+        String fruites[] = {"orange", "apple","banna","grapes","mango","avocado"};
+        Arrays.stream(fruites).collect(Collectors.groupingBy( fruite -> fruite.charAt(0))).forEach( (key, value) -> System.out.print(key+"=>"+value));
 ```
-
-**How it works:**
-- Start filling `nums1` from the last position.
-- Compare elements from the end of both arrays and place the larger one at position `k`.
-- Continue until all elements of `nums2` are placed.
+Output: a=>[apple, avocado]b=>[banna]g=>[grapes]m=>[mango]o=>[orange]
 
 ---
 
 ## 🗂️ LinkedHashMap
 
 ### 1. Find First Non-Repetitive Character
-
-Finds the **first character** in a string that appears exactly once, using Java Streams and `LinkedHashMap` to preserve insertion order.
-
-**Time Complexity:** `O(n)` | **Space Complexity:** `O(n)`
 
 ```java
 public static void main(String[] args) {
@@ -63,20 +83,11 @@ public static void main(String[] args) {
 }
 ```
 
-**How it works:**
-- Stream each character and group them by frequency using `Collectors.groupingBy`.
-- `LinkedHashMap::new` ensures insertion order is maintained.
-- Filter entries with count `== 1` and return the first match.
-
 ---
 
 ## 📚 Stack
 
 ### 1. Next Greater Element
-
-For each element in the array, finds the **next greater element** to its right using a **monotonic stack**.
-
-**Time Complexity:** `O(n)` | **Space Complexity:** `O(n)`
 
 ```java
 public static void main(String[] args) {
@@ -95,12 +106,6 @@ public static void main(String[] args) {
 }
 ```
 
-**How it works:**
-- Traverse the array from **right to left**.
-- Maintain a stack of potential "next greater" candidates.
-- Pop elements from the stack that are smaller than or equal to the current element.
-- The top of the stack (if non-empty) is the next greater element for the current index.
-
 **Output:**
 | Element | Next Greater |
 |---------|-------------|
@@ -110,18 +115,3 @@ public static void main(String[] args) {
 | 25      | None        |
 
 ---
-
-## 🛠️ Prerequisites
-
-- Java 8+
-- Basic understanding of Arrays, LinkedHashMap, and Stack
-
----
-
-## 📁 Topics Covered
-
-| Topic         | Problem                          |
-|---------------|----------------------------------|
-| Arrays        | Merge Two Sorted Arrays          |
-| LinkedHashMap | First Non-Repetitive Character   |
-| Stack         | Next Greater Element             |
