@@ -1,0 +1,46 @@
+Interview Preparations
+
+
+Java
+
+JVM, JRE, JDK
+Java class loaders 
+	Bootstrap class loader - Loading java.util and java.lang packages
+	Platform class loader - Loading platform specific classed and Java SE APIs (e.g., java.sql)
+	System / Application class loader - Load classes from application class path
+OOPs concepts - Abstraction, Encapsulation, Inheritance, Polymorphism,
+SOLID principles
+	Single reason principle - A class should be for single reason. For example, Student class should have only student related information and it shouldn’t have teacher related information.
+	Open/Closed principle - A class is open for extend but closed for modification.
+	Liskov principle - Subclass should be substitutable with it’s super class
+	Dependency Inversion  - Abstraction
+Interface vs Abstract
+Collections
+	List - ArrayList, LinkedList, Vector, Stack
+	Set - HashSet, TreeSet
+	Queue - PriorityQueue, ArrayDeQueue
+equals and hashcode contract
+HashMap - Internal implementation and hash collision
+Exception handling - Runtime exception (Unchecked exception), Checked exception
+Threads - Thread life cycle, Executor service, Completable feature
+Comparator and Comparable
+
+Java features based on LTS versions
+JDK 8 - Stream API, Optional, Lamda function, Functional Interface, default keyword in interface, DateTime
+JDK 11 - String functions
+JDK 17 - Sealed class, Record, TextBlock, InstanceOf, Switch case
+
+
+SQL
+
+--Find items between two price range
+select item from Orders where amount between 200 and 300;
+
+-- Print first three characters
+select SUBSTRING(first_name,1,3) from Customers;
+
+-- Print records where third character matches input
+select first_name from Customers where SUBSTRING(first_name, 3, 1) = 'b';
+
+-- group values as comma separated
+select GROUP_CONCAT(item) from Orders
