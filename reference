@@ -1,38 +1,100 @@
 Interview Preparations
 
-
 Java
-
 JVM, JRE, JDK
 Java class loaders 
 	Bootstrap class loader - Loading java.util and java.lang packages
 	Platform class loader - Loading platform specific classed and Java SE APIs (e.g., java.sql)
 	System / Application class loader - Load classes from application class path
-OOPs concepts - Abstraction, Encapsulation, Inheritance, Polymorphism,
+OOPs concepts - Abstraction, Encapsulation, Inheritance, Polymorphism
+equals and hashcode contract
+static vs instance block
 SOLID principles
 	Single reason principle - A class should be for single reason. For example, Student class should have only student related information and it shouldn’t have teacher related information.
 	Open/Closed principle - A class is open for extend but closed for modification.
 	Liskov principle - Subclass should be substitutable with it’s super class
 	Dependency Inversion  - Abstraction
 Interface vs Abstract
+Garbage Collection Eligibility
+Manual GC Trigger
+Final vs Finally vs Finalize
 Collections
 	List - ArrayList, LinkedList, Vector, Stack
 	Set - HashSet, TreeSet
 	Queue - PriorityQueue, ArrayDeQueue
-equals and hashcode contract
+Diamond Problem
 HashMap - Internal implementation and hash collision
+Exception vs Error
 Exception handling - Runtime exception (Unchecked exception), Checked exception
-Threads - Thread life cycle, Executor service, Completable feature
+Failsafe vs Failfast
 Comparator and Comparable
+Threads - Thread life cycle, Executor service, Completable feature
+join(), sleep(), yield()
+Posibilities to stop main thread
+Deadlock
+Java design patterns - Creational, Structural, and Behavioral
 
 Java features based on LTS versions
 JDK 8 - Stream API, Optional, Lamda function, Functional Interface, default keyword in interface, DateTime
-JDK 11 - String functions
+JDK 11 - New String methods
 JDK 17 - Sealed class, Record, TextBlock, InstanceOf, Switch case
 
+Hibernate
+what is ORM?
+Basic annotations @Entiry, @Table, @Id, @Generatedvalue
+Relationshipe annotations @OneToOne, @OneToMany, @ManyToOne, @ManyToMany, @JoinColumn
+Lazy vs Egar fetch
+Dirty check
+pessimistic vs optimistic locking?
+
+JPA
+JPA Repository vs CRUD Repository
+@Query annotations and it's peroperties
+
+SpringBoot
+Why we need spring boot?
+Sterio type annotations
+Use of @SpringBootApplication annotation
+Use of @Transaction annotation and it's properties
+Spring web MVC
+@Controller vs @RestController
+Global exception handler
+Handler interceptor
+Filter
+
+MicroServices
+Monolithic vs Microservices
+Designpatterns - APIGateway, Service Registry, Cricuite breaker, Database per service, Centralized logging
+
+Kafka
+Kafka server
+Zookeper
+What is KafkaTemplate
+What is Topic, Group, offset
+use of @KafkaListener annotation
+Failure handling
+
+Angular
+Use of angular framework - Single Page Application
+what is node
+package.json vs package-lock.json
+use of angular.json file
+Directives - Component, Attribute, Structural
+one way vs two way data binding
+Reactive forms vs template driven
+page routing and lazy routing
 
 SQL
+ACID property
+Normalization
+DDL, DML
+Joins
+Indexing
+Transaction
+Procedure vs Function
+Triggers
 
+SQL problems
 --Find items between two price range
 select item from Orders where amount between 200 and 300;
 
@@ -44,3 +106,12 @@ select first_name from Customers where SUBSTRING(first_name, 3, 1) = 'b';
 
 -- group values as comma separated
 select GROUP_CONCAT(item) from Orders
+
+-- get second highest aged person
+select * from Customers order by age desc LIMIT 1 OFFSET 1
+
+SELECT * FROM (
+    SELECT first_name, DENSE_RANK() OVER (ORDER BY age DESC) AS age_rank
+    FROM Customers
+) ranked_Customers
+WHERE age_rank = 2;
