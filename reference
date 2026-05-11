@@ -64,7 +64,7 @@ Filter
 
 MicroServices
 Monolithic vs Microservices
-Designpatterns - APIGateway, Service Registry, Cricuite breaker, Database per service, Centralized logging
+Designpatterns - APIGateway, Service Registry, Cricuite breaker, Database per service, Centralized logging, Saga pattern
 
 Kafka
 Kafka server
